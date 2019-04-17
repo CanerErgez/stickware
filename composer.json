@@ -17,7 +17,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Stickware\\": "vendor/caner/stickware/src"
+            "Stickware\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Stickware\\StickwareServiceProvider"
+            ]
         }
     }
 }
