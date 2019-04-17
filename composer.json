@@ -1,0 +1,18 @@
+{
+    "name": "caner/stickware",
+    "description": "Laravel User Point and Badge System",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Caner Ergez",
+            "email": "ergezcaner@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": "^7.1.3",
+      "laravel/framework": "5.8.*",
+      "nesbot/carbon": "^1.26.3 || ^2.0"
+    }
+}
