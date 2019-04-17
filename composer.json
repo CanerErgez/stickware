@@ -19,5 +19,5 @@
         "psr-4": {
             "Stickware\\": "vendor/caner/stickware/src"
         }
-    },
+    }
 }
