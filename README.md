@@ -23,6 +23,12 @@ $ php artisan migrate
 ```
 
 # Usage
+```php
+use Stickware\Stickware;
+```
+
+and
+
 
 ```php
 // addPoint($userId,$pointCount,$reason)
