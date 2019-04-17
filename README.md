@@ -9,15 +9,15 @@ Step 4 - Badge System Updates <br>
 Step 5 - General System Updated <br>
 
 # Install
-
+Step 1
 ```
 $ php artisan make:auth
 ```
-
+Step 2
 ```
 $ composer require caner/stickware
 ```
-
+Step 3 # Look . 'stickware_user_point' table must be migrate
 ```
 $ php artisan migrate
 ```
