@@ -1,28 +1,36 @@
 # Stickware
-Basic Laravel User Point and Badge System
+Basic Laravel User Point and Badge System .
 
 # Milestones
 Step 1 - First Release . User Point System # OK! <br>
-Step 2 - UserPoint System Updates <br>
+Step 2 - UserPoint System Updates # Running... <br>
 Step 3 - Second Release . Badge System <br>
 Step 4 - Badge System Updates <br>
 Step 5 - General System Updated <br>
 
 # Install
-
+Step 1
 ```
 $ php artisan make:auth
 ```
-
+Step 2
 ```
 $ composer require caner/stickware
 ```
-
+Step 3
 ```
 $ php artisan migrate
 ```
+ - Hey uou . 'stickware_user_point' table must be migrate.
 
 # Usage
+```php
+use Stickware\Stickware;
+use Carbon\Carbon; // Optional
+```
+
+and
+
 
 ```php
 // addPoint($userId,$pointCount,$reason)
@@ -31,8 +39,9 @@ Stickware::addPoint(1,10,'add_post');
 
 
 // TotalUserPoint($userId)
-Stickware::TotalUserPoint(1);
+Stickware::totalUserPoint(1);
 // return 26 (or sample integer value)
+// IMPORTANT : v1.0.1 function name changed . (TotalUserPoint -> totalUserPoint)
 
 
 // todayUserPoint($userId)
@@ -92,5 +101,10 @@ Stickware::userPointForReason(1,'add_comment');
 
 // lastDayUserPointForReason($userId,$reason,$dayCount)
 Stickware::lastDayUserPointForReason(1,'add_comment',60);
+// return 60 (or sample integer value)
+
+// Version 1.0.1 Update
+// lastDayUserPointForReason($userId,$startDate,$endDate)
+Stickware::getPointResultForDate(1,Carbon::yesterday(),Carbon::now());
 // return 60 (or sample integer value)
 ```

@@ -21,36 +21,30 @@ trait UserPointTrait
     if ($sup->save()) {
       return true;
     } else {
-      throw new Exception('Ouch! Sorry . User Point Not Added. Please write me this error in Github for me.');
+      throw new Exception('Ouch! Sorry . User Point Not Added. Please write me this error in Github.');
       return false;
     }
   }
 
-  public static function TotalUserPoint(int $userId): int
+  public static function totalUserPoint(int $userId): int
   {
     self::validateUser($userId);
 
-    $sum = StickwareUserPoint::where('userId',$userId)->sum('pointCount');
-
-    return $sum;
+    return StickwareUserPoint::where('userId',$userId)->sum('pointCount');
   }
 
-  public static function todayUserPoint(int $userId): int
+  public static function todayUserPoint(int $userId)
   {
     self::validateUser($userId);
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[Carbon::today(),Carbon::now()])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,Carbon::today(),Carbon::now());
   }
 
-  public static function yesterdayUserPoint(int $userId): int
+  public static function yesterdayUserPoint(int $userId)
   {
     self::validateUser($userId);
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[Carbon::yesterday(),Carbon::today()])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,Carbon::yesterday(),Carbon::today());
   }
 
   public static function lastCustomDayUserPoint(int $userId, int $dayCount): int
@@ -59,9 +53,7 @@ trait UserPointTrait
 
     $startDate = Carbon::now()->subdays($dayCount)->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$startDate,Carbon::now()])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$startDate,Carbon::now());
   }
 
   public static function thisWeekUserPoint(int $userId): int
@@ -72,9 +64,7 @@ trait UserPointTrait
     $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i:s');
     $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$weekStartDate,$weekEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$weekStartDate,$weekEndDate);
   }
 
   public static function lastWeekUserPoint(int $userId): int
@@ -85,9 +75,7 @@ trait UserPointTrait
     $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i:s');
     $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$weekStartDate,$weekEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$weekStartDate,$weekEndDate);
   }
 
   public static function thisMonthUserPoint(int $userId): int
@@ -98,9 +86,7 @@ trait UserPointTrait
     $monthStartDate = $now->startOfMonth()->format('Y-m-d H:i:s');
     $monthEndDate = $now->endOfMonth()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$monthStartDate,$monthEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$monthStartDate,$monthEndDate);
   }
 
   public static function lastMonthUserPoint(int $userId): int
@@ -111,9 +97,7 @@ trait UserPointTrait
     $monthStartDate = $now->startOfMonth()->format('Y-m-d H:i:s');
     $monthEndDate = $now->endOfMonth()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$monthStartDate,$monthEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$monthStartDate,$monthEndDate);
   }
 
   public static function thisYearUserPoint(int $userId): int
@@ -124,9 +108,7 @@ trait UserPointTrait
     $yearStartDate = $now->startOfYear()->format('Y-m-d H:i:s');
     $yearEndDate = $now->endOfYear()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$yearStartDate,$yearEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$yearStartDate,$yearEndDate);
   }
 
   public static function lastYearUserPoint(int $userId): int
@@ -137,25 +119,19 @@ trait UserPointTrait
     $yearStartDate = $now->subYear()->startOfYear()->format('Y-m-d H:i:s');
     $yearEndDate = $now->subYear()->endOfYear()->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$yearStartDate,$yearEndDate])->sum('pointCount');
-
-    return $sum;
+    return self::getPointResultForDate($userId,$yearStartDate,$yearEndDate);
   }
 
   public static function totalPointForReason(string $reason): int
   {
-    $sum = StickwareUserPoint::where('reason',$reason)->sum('pointCount');
-
-    return $sum;
+    return StickwareUserPoint::where('reason',$reason)->sum('pointCount');
   }
 
   public static function userPointForReason(int $userId, string $reason): int
   {
     self::validateUser($userId);
 
-    $sum = StickwareUserPoint::where('userId',$userId)->where('reason',$reason)->sum('pointCount');
-
-    return $sum;
+    return StickwareUserPoint::where('userId',$userId)->where('reason',$reason)->sum('pointCount');
   }
 
   public static function lastDayUserPointForReason(int $userId, string $reason, int $dayCount): int
@@ -164,9 +140,12 @@ trait UserPointTrait
 
     $startDate = Carbon::now()->subdays($dayCount)->format('Y-m-d H:i:s');
 
-    $sum = StickwareUserPoint::where('userId',$userId)->where('reason',$reason)->whereBetween('created_at',[$startDate,Carbon::now()])->sum('pointCount');
+    return StickwareUserPoint::where('userId',$userId)->where('reason',$reason)->whereBetween('created_at',[$startDate,Carbon::now()])->sum('pointCount');
+  }
 
-    return $sum;
+  public static function getPointResultForDate($userId,$startDate,$endDate): int
+  {
+    return StickwareUserPoint::where('userId',$userId)->whereBetween('created_at',[$startDate,$endDate])->sum('pointCount');
   }
 
   public static function handlePoinableTest(int $userId, int $pointCount, string $reason)

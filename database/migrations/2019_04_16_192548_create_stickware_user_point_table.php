@@ -29,6 +29,6 @@ class CreateUserPointTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_point');
+        Schema::dropIfExists('stickware_user_point');
     }
 }
