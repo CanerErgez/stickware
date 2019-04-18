@@ -104,7 +104,7 @@ Stickware::lastDayUserPointForReason(1,'add_comment',60);
 // return 60 (or sample integer value)
 
 // Version 1.0.1 Update
-// lastDayUserPointForReason($userId,$startDate,$endDate)
+// getPointResultForDate($userId,$startDate,$endDate)
 Stickware::getPointResultForDate(1,Carbon::yesterday(),Carbon::now());
 // return 60 (or sample integer value)
 ```
