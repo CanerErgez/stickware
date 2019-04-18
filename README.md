@@ -38,7 +38,7 @@ Stickware::addPoint(1,10,'add_post');
 // return true
 
 
-// TotalUserPoint($userId)
+// totalUserPoint($userId)
 Stickware::totalUserPoint(1);
 // return 26 (or sample integer value)
 // IMPORTANT : v1.0.1 function name changed . (TotalUserPoint -> totalUserPoint)
