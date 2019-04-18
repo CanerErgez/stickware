@@ -21,7 +21,7 @@ Step 3
 ```
 $ php artisan migrate
 ```
- - Hey uou . 'stickware_user_point' table must be migrate.
+ - Hey you . 'stickware_user_point' table must be migrate.
 
 # Usage
 ```php
