@@ -1,4 +1,5 @@
 # Stickware
+default
 Basic Laravel User Point and Badge System .
 
 # Milestones
