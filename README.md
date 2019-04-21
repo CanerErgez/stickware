@@ -1,5 +1,8 @@
 # Stickware
-default
+[![Latest Stable Version](https://poser.pugx.org/caner/stickware/v/stable)](https://packagist.org/packages/caner/stickware)
+[![Total Downloads](https://poser.pugx.org/caner/stickware/downloads)](https://packagist.org/packages/caner/stickware)
+[![License](https://poser.pugx.org/caner/stickware/license)](https://packagist.org/packages/caner/stickware)
+
 Basic Laravel User Point and Badge System .
 
 # Milestones
