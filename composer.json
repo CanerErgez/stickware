@@ -15,15 +15,24 @@
       "laravel/framework": "5.8.*",
       "nesbot/carbon": "^1.26.3 || ^2.0"
     },
+    "require-dev": {
+        "orchestra/testbench": "^3.5",
+        "phpunit/phpunit": "~7.0"
+    },
     "autoload": {
         "psr-4": {
-            "Stickware\\": "src"
+            "Caner\\Stickware\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Caner\\Stickware\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Stickware\\StickwareServiceProvider"
+                "Caner\\Stickware\\StickwareServiceProvider"
             ]
         }
     }

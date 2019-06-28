@@ -1,9 +1,9 @@
 <?php
-namespace Stickware\Traits;
+namespace Caner\Stickware\Traits;
 
 use Illuminate\Http\Request;
 use Exception;
-use Stickware\Models\StickwareUserPoint;
+use Caner\Stickware\Models\StickwareUserPoint;
 use App\User;
 use Carbon\Carbon;
 

@@ -1,20 +1,11 @@
 <?php
 
-namespace Stickware;
+namespace Caner\Stickware;
 
 use Illuminate\Support\ServiceProvider;
 
 class StickwareServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->app->make('Stickware\Stickware');
-    }
 
     /**
      * Register the package's publishable resources.
