@@ -1,8 +1,8 @@
 <?php
-namespace Stickware;
+namespace Caner\Stickware;
 
 use Illuminate\Http\Request;
-use Stickware\Traits\UserPointTrait;
+use Caner\Stickware\Traits\UserPointTrait;
 
 class Stickware
 {

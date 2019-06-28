@@ -1,6 +1,6 @@
 <?php
 
-namespace Stickware\Models;
+namespace Caner\Stickware\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
