@@ -1,10 +1,14 @@
 <?php
 namespace Caner\Stickware;
 
-use Illuminate\Http\Request;
-use Caner\Stickware\Traits\UserPointTrait;
+use Illuminate\Database\Eloquent\Model;
 
-class Stickware
+class Stickware extends Model
 {
-  use UserPointTrait;
+
+    public static function totalPointForReason(string $reason): int
+    {
+        return Stickware::where('reason',$reason)->sum('pointCount');
+    }
+
 }
