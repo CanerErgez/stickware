@@ -2,6 +2,8 @@
 
 namespace Caner\Stickware\Tests;
 
+use Caner\Stickware\Tests\Stubs\Models\User;
+
 class StickwareTest extends TestCase
 {
     public function setUp(): void
@@ -10,8 +12,20 @@ class StickwareTest extends TestCase
     }
 
     /** @test */
-    public function it_can_dispatch_a_job_that_calls_a_webhook()
+    public function it_can_create_and_query_total_points()
     {
-        $this->assertEquals(true, true);
+        /** @var User $user */
+        $user = User::first();
+
+        $this->assertEquals(0, $user->totalPoints());
+
+        $user->addPoint(100, 'iap');
+        $this->assertEquals(100, $user->totalPoints());
+
+
+        $user->addPoint(20, 'login');
+        $this->assertEquals(20, $user->totalPointForReason('login'));
+
+        $this->assertEquals(120, $user->totalPointsToday());
     }
 }

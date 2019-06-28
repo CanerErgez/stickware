@@ -3,8 +3,8 @@
 namespace Caner\Stickware\Tests;
 
 use Caner\Stickware\StickwareServiceProvider;
+use Caner\Stickware\Tests\Stubs\Models\User;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Auth\User;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 

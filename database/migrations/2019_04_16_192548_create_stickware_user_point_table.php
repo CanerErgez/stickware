@@ -15,7 +15,7 @@ class CreateStickwareUserPointTable extends Migration
     {
         Schema::create('stickware_user_point', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->morphs('model');
             $table->integer('pointCount');
             $table->string('reason');
             $table->timestamps();
