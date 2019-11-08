@@ -29,7 +29,7 @@ class StickwareUserPoint extends Model
     protected $fillable = ['points', 'reason'];
 
     /**
-     * @param string $reason
+     * @param  string  $reason
      * @return int
      */
     public static function totalPointForReason(string $reason): int
@@ -38,9 +38,9 @@ class StickwareUserPoint extends Model
     }
 
     /**
-     * @param Builder|static $query
-     * @param Carbon $since
-     * @param Carbon $to
+     * @param  Builder|static  $query
+     * @param  Carbon  $since
+     * @param  Carbon  $to
      * @return Builder|static
      */
     public function scopePeriod($query, Carbon $since, Carbon $to)
