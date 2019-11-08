@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait UserPointTrait
 {
-
     /**
      * @return MorphMany|StickwareUserPoint
      */
@@ -16,6 +15,7 @@ trait UserPointTrait
     {
         return $this->morphMany(StickwareUserPoint::class, 'model');
     }
+
 
     public function addPoint(int $points, string $reason = null)
     {
@@ -27,7 +27,7 @@ trait UserPointTrait
         return $point;
     }
 
-    public function totalPoints(): int
+    public function getTotalPoint(): int
     {
         return $this->userPoints()->sum('points');
     }
@@ -58,6 +58,7 @@ trait UserPointTrait
     {
         $now = Carbon::now();
         $weekStartDate = $now->startOfWeek();
+        $now = Carbon::now();
         $weekEndDate = $now->endOfWeek();
 
         return $this->totalPointsRange($weekStartDate, $weekEndDate);
@@ -67,6 +68,7 @@ trait UserPointTrait
     {
         $now = Carbon::now()->subDays(7);
         $weekStartDate = $now->startOfWeek();
+        $now = Carbon::now()->subDays(7);
         $weekEndDate = $now->endOfWeek();
 
         return $this->totalPointsRange($weekStartDate, $weekEndDate);
@@ -76,6 +78,7 @@ trait UserPointTrait
     {
         $now = Carbon::now();
         $monthStartDate = $now->startOfMonth();
+        $now = Carbon::now();
         $monthEndDate = $now->endOfMonth();
 
         return $this->totalPointsRange($monthStartDate, $monthEndDate);
@@ -85,6 +88,7 @@ trait UserPointTrait
     {
         $now = Carbon::now()->subMonth();
         $monthStartDate = $now->startOfMonth();
+        $now = Carbon::now()->subMonth();
         $monthEndDate = $now->endOfMonth();
 
         return $this->totalPointsRange($monthStartDate, $monthEndDate);
@@ -94,6 +98,7 @@ trait UserPointTrait
     {
         $now = Carbon::now();
         $yearStartDate = $now->startOfYear();
+        $now = Carbon::now();
         $yearEndDate = $now->endOfYear();
 
         return $this->totalPointsRange($yearStartDate, $yearEndDate);
@@ -103,6 +108,7 @@ trait UserPointTrait
     {
         $now = Carbon::now();
         $yearStartDate = $now->subYear()->startOfYear();
+        $now = Carbon::now();
         $yearEndDate = $now->subYear()->endOfYear();
 
         return $this->totalPointsRange($yearStartDate, $yearEndDate);
@@ -115,8 +121,6 @@ trait UserPointTrait
     /*
         public function lastDayUserPointForReason(int $userId, string $reason, int $dayCount): int
         {
-            self::validateUser($userId);
-
             $startDate = Carbon::now()->subdays($dayCount);
 
             return Stickware::where('userId', $userId)->where('reason', $reason)->whereBetween('created_at', [$startDate, Carbon::now()])->sum('points');
